@@ -12,7 +12,7 @@ feature_img = zeros(nfiles_img,83*2);
 label_img = zeros(nfiles_img,1);
 for i = 1:nfiles_img
 img =['jaffe/',cell_img{1,i}];
-label_img[i,1] = img(10:11)
+label_img(i,1) = label_dict(img(10:11));
 %display(fileID_img);
 API_KEY = 'd45344602f6ffd77baeab05b99fb7730';
 API_SECRET = 'jKb9XJ_GQ5cKs0QOk6Cj1HordHFBWrgL';
@@ -62,3 +62,5 @@ hold on;
 
 end
 
+ConfigStr= sprintf('-t 0 -v 5 -c 1'); 
+model = svmtrain(label_img,feature_img,ConfigStr);
